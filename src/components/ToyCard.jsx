@@ -1,17 +1,27 @@
-import React from "react";
+function ToyCard({ toy, onUpdateLikes, onDeleteToy }) {
+  const handleLike = () => {
+    onUpdateLikes(toy.id, toy.likes);
+  };
 
-function ToyCard() {
+  const handleDonate = () => {
+    onDeleteToy(toy.id);
+  };
+
   return (
-    <div className="card" data-testid="toy-card">
-      <h2>{"" /* Toy's Name */}</h2>
+    <div className="toy-card" data-testid="toy-card">
+      <h2>{toy.name}</h2>
       <img
-        src={"" /* Toy's Image */}
-        alt={"" /* Toy's Name */}
+        src={toy.image}
+        alt={toy.name}
         className="toy-avatar"
       />
-      <p>{"" /* Toy's Likes */} Likes </p>
-      <button className="like-btn">Like {"<3"}</button>
-      <button className="del-btn">Donate to GoodWill</button>
+      <p>{toy.likes} Likes </p>
+      <button onClick={handleLike} className="like-btn">
+        Like {'<3'}
+      </button>
+      <button onClick={handleDonate} className="donate-btn">
+        Donate to GoodWill 
+      </button>
     </div>
   );
 }
